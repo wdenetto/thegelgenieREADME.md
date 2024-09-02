@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gel Genie by Rachel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+        body {
+            font-family: 'Lobster', cursive;
+            margin: 0;
+            padding: 0;
+            color: #b8860b;
+            background-color: #1c1c1c;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        header {
+            background-color: black;
+            color: #b8860b;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            font-size: 1.8em;
+            color: #b8860b;
+            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .contact-info {
+            text-align: right;
+            color: #b8860b;
+            display: flex;
+            align-items: center;
+        }
+
+        .phone-number {
+            transition: color 0.3s ease;
+            text-decoration: none;
+            color: #b8860b;
+            font-size: 1.35em;
+        }
+
+        .phone-number:hover {
+            color: #daa520;
+            cursor: pointer;
+        }
+
+        .facebook-logo {
+            margin-left: 40px;
+            height: 48px;
+            width: 48px;
+        }
+
+        main {
+            padding: 20px 10px; /* Padding adjusted to 10px from the sides */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: calc(100% - 20px); /* 10px on each side */
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-banner {
+            width: 100%;
+            background-color: #8b5e00;
+            text-align: center;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .welcome-banner .welcome-message {
+            font-size: 2.5em;
+            color: #fff;
+            margin: 0;
+            text-shadow: 2px 2px 4px #000000;
+            flex-grow: 1;
+        }
+
+        .welcome-banner img {
+            height: 320px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .content-box {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 1.5em;
+            line-height: 1.6;
+            color: #fff;
+            position: relative;
+            z-index: 3;
+            box-sizing: border-box;
+        }
+
+        .content-box h2 {
+            margin: 0;
+            position: relative;
+            font-size: 1.8em;
+            color: #b8860b;
+        }
+
+        .content-box h2::after {
+            content: "";
+            display: block;
+            width: 50%;
+            height: 2px;
+            background-color: #b8860b;
+            margin: 10px auto 20px auto;
+        }
+
+        .map-container {
+            border: 1px solid #b8860b;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 50vw;
+            height: 350px;
+            margin: 0 auto 20px auto;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        .services-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+            gap: 20px;
+        }
+
+        .services-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background-color: #b8860b;
+        }
+
+        .service-column {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        .service-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .service-card {
+            background-color: #333333;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            width: calc(50% - 20px);
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+
+        .service-card h3 {
+            font-size: 1.2em;
+            color: #b8860b;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 1em;
+            color: #daa520;
+        }
+
+        .gallery-container {
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 20px;
+        }
+
+        .gallery-item {
+            display: inline-block;
+            height: 300px;
+            margin-right: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            vertical-align: top;
+        }
+
+        .gallery-item img {
+            width: auto;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .testimonial {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #daa520;
+            border: 1px solid #b8860b;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .testimonial .stars {
+            font-size: 1.2em;
+            color: #daa520;
+            float: right;
+            margin-left: 10px;
+        }
+
+        .testimonial::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        footer {
+            background-color: black;
+            color: #b8860b;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Additional styles for About Us images */
+        .about-us-images {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Adjust the gap between images if needed */
+            margin-top: 20px; /* Adjust spacing from the text */
+        }
+
+        .about-us-img {
+            width: calc(40% - 5px); /* This makes the images take up equal space side by side */
+            height: auto;
+            border-radius: 10px; /* Match the rounded corners to other images */
+        }
+    </style>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLwCfE8T5UwvrReCmbJb64POzD6oAdJWo&callback=initMap"></script>
+    <script>
+        function initMap() {
+            const location = { lat: 53.26769125277598, lng: -1.630958690543485 };
+
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: location,
+                styles: [
+                    { elementType: 'geometry', stylers: [{ color: '#212121' }] },
+                    { elementType: 'labels.icon', stylers: [{ visibility: 'on' }] },
+                    { elementType: 'labels.text.fill', stylers: [{ color: '#757575' }] },
+                    { elementType: 'labels.text.stroke', stylers: [{ color: '#212121' }] },
+                    { featureType: 'administrative', elementType: 'geometry', stylers: [{ color: '#757575' }] },
+                    { featureType: 'administrative.country', elementType: 'labels.text.fill', stylers: [{ color: '#ffffff' }] },
+                    { featureType: 'administrative.land_parcel', elementType: 'labels', stylers: [{ visibility: 'on' }] },
+                    { featureType: 'administrative.neighborhood', elementType: 'labels', stylers: [{ visibility: 'on' }] },
+                    { featureType: 'landscape', elementType: 'geometry', stylers: [{ color: '#212121' }] },
+                    { featureType: 'poi', elementType: 'geometry', stylers: [{ color: '#212121' }] },
+                    { featureType: 'poi', elementType: 'labels.text.fill', stylers: [{ color: '#757575' }] },
+                    { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#484848' }] },
+                    { featureType: 'road', elementType: 'labels.text.fill', stylers: [{ color: '#757575' }] },
+                    { featureType: 'road', elementType: 'labels.text.stroke', stylers: [{ color: '#212121' }] },
+                    { featureType: 'transit', elementType: 'geometry', stylers: [{ color: '#212121' }] },
+                    { featureType: 'transit.station', elementType: 'labels.text.fill', stylers: [{ color: '#757575' }] },
+                    { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#000000' }] },
+                    { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#ffffff' }] }
+                ]
+            });
+
+            new google.maps.Marker({
+                position: location,
+                map: map,
+                label: "Gel",
+                title: "Gel Genie by Rachel"
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const salonName = "The Gel Genie by Rachel";
+            const phoneNumber = "+44 7754 429513";
+            const location = "Alive Wellness Centre, Calver, S32";
+            const year = new Date().getFullYear();
+
+            document.getElementById("salonName").textContent = salonName;
+            document.getElementById("phoneNumber").href = `tel:${phoneNumber.replace(/\s+/g, '')}`;
+            document.getElementById("phoneNumber").textContent = `Get in contact: ${phoneNumber}`;
+            document.getElementById("location").textContent = location;
+            document.getElementById("footerYear").textContent = year;
+        });
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <h1 id="salonName"></h1>
+        <p class="tagline">Your destination for beautiful, healthy nails</p>
+        <div class="contact-info">
+            <p><a id="phoneNumber" class="phone-number"></a><br><span id="location"></span></p>
+            <a href="https://www.facebook.com/p/The-Gel-Genie-By-Rachel-100057793414154/" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="facebook-logo">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Swapped order: Welcome banner comes first, then About Us -->
+        <div class="welcome-banner">
+            <img src="https://live.staticflickr.com/65535/53957005230_25b7b31881_n.jpg" alt="Image Left">
+            <div class="welcome-message">
+                <p>Welcome to The Gel Genie</p>
+                <p>Est.2005</p>
+            </div>
+            <img src="https://live.staticflickr.com/65535/53964044000_71071d3e41_n.jpg" alt="Image Right">
+        </div>
+
+        <div class="content-wrapper">
+            <section class="content-box" style="width: 50%;">
+                <h2>About Us</h2>
+                <p>At The Gel Genie, we offer an extensive palette of over 150 stunning colors, ensuring every client finds the perfect shade to express their unique style.</p>
+                <p>Our sculpted nail extensions are crafted with precision and designed for exceptional durability, ensuring long-lasting beauty you can rely on.</p>
+                <p>Whether you’re looking for intricate nail art or a simple, elegant design, we bring your creative ideas to life with artistry and flair. We take pride in using only the highest quality products, ensuring that your nails not only look fabulous but are also treated with the utmost care.</p>
+                
+                <!-- Image container for the two images -->
+                <div class="about-us-images">
+                    <img src="https://live.staticflickr.com/65535/53966726896_a2cbc3b996_w.jpg" alt="About Us Image 1" class="about-us-img">
+                    <img src="https://live.staticflickr.com/65535/53966727231_fedb45e76e_w.jpg" alt="About Us Image 2" class="about-us-img">
+                </div>
+            </section>
+
+            <section class="content-box" style="width: 50%;">
+                <h2>Services</h2>
+                <div class="services-container">
+                    <div class="service-column">
+                        <h2>Manicures</h2>
+                        <div class="service-section">
+                            <div class="service-card">
+                                <h3>Gel Nails BIAB</h3>
+                                <p>From £34</p>
+                            </div>
+                            <div class="service-card">
+                                <h3>Gel Extensions</h3>
+                                <p>From £41</p>
+                            </div>
+                            <div class="service-card">
+                                <h3>Nail Art</h3>
+                                <p>From £3</p>
+                            </div>
+                            <div class="service-card">
+                                <h3>Nail Repairs</h3>
+                                <p>£5</p>
+                            </div>
+                            <div class="service-card">
+                                <h3>Gel Removal & MiniMani</h3>
+                                <p>£20</p>
+                            </div>
+                            <div class="service-card">
+                                <h3>Manicure & Polish</h3>
+                                <p>£24</p>
+                            </div>
+                            <div class="service-card">
+                                <h3>Cuticle Work & File</h3>
+                                <p>£19</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-column">
+                        <h2>Pedicures</h2>
+                        <div class="service-section">
+                            <div class="service-card">
+                                <h3>Gel Toes</h3>
+                                <p>£29</p>
+                            </div>
+                            <div class="service-card">
+                                <h3>Elim Pedicure</h3>
+                                <p>£20</p>
+                            </div>
+                            <div class="service-card">
+                                <h3>Elim Pedicure & Gel Toes</h3>
+                                <p>£45</p>
+                            </div>
+                            <div class="service-card">
+                                <h3>Elim Luxury Pedicure</h3>
+                                <p>£35</p>
+                            </div>
+                            <div class="service-card">
+                                <h3>Elim Luxury Pedicure & Gel Toes</h3>
+                                <p>£60</p>
+                            </div>
+                            <div class="service-card">
+                                <h3>File & Polish Toes</h3>
+                                <p>£19</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="content-box">
+            <h2>Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="https://live.staticflickr.com/65535/53952864162_17cee2ba1e_w.jpg" alt="Gallery Image 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://live.staticflickr.com/65535/53954128629_171a482cc7_m.jpg" alt="Gallery Image 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://live.staticflickr.com/65535/53954250870_baf33e3359_n.jpg" alt="Gallery Image 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://live.staticflickr.com/65535/53954250915_0eb5e5b92a_n.jpg" alt="Gallery Image 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://live.staticflickr.com/65535/53954128729_e7cd7d3007_n.jpg" alt="Gallery Image 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://live.staticflickr.com/65535/53953796346_8187bfb854_m.jpg" alt="Gallery Image 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://live.staticflickr.com/65535/53952904607_f7a410c408_n.jpg" alt="Gallery Image 7">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://live.staticflickr.com/65535/53953796451_4ee55eaa60_n.jpg" alt="Gallery Image 8">
+                </div>
+            </div>
+        </section>
+
+        <section class="content-box">
+            <h2>Find Us</h2>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+            <p>Visit us at Alive Wellness Centre, Calver, S32.</p>
+        </section>
+
+        <section class="content-box">
+            <h2>Testimonials</h2>
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                "Always accommodates my busy diary.
+		Quality work! There are lots of colours to pick from. Nail art is great too when I have that." - Vicky C.
+            </div>
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                "Fab nail tech!!" - Abbie B.
+            </div>
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                "Love having my nails done by Rachel! We always have a good laugh and my nails always look amazing at the end of it." - Sally D.
+            </div>
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                "Highly recommend, my nails have never looked better, and the quality lasts for weeks." - Jess M.
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; <span id="footerYear"></span> The Gel Genie</p>
+    </footer>
+
+</body>
+
+</html>
+
+
+
+
+     
+
+         
+
+          
+
+
